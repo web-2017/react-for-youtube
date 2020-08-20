@@ -1,3 +1,7 @@
+# Ускоренный курс по React за 1 час
+
+- Видео к уроку - https://youtu.be/Hn0jGjYAunc
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
