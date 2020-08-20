@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react"
+import { TodoInput, TodoList } from "./components/"
+import { v4 as uuidv4 } from "uuid"
+
+import "./App.css"
 
 function App() {
+  const [todos, setTodo] = useState([])
+
+  // add Todo
+  const addTodo = (value) => {
+    const todoItem = {
+      id: uuidv4(),
+      text: value,
+      complete: false,
+    }
+    setTodo([...todos, todoItem])
+  }
+
+  // checked todo
+  const checkTodo = (id) => {
+    setTodo(
+      todos.map((todo) => {
+        if (todo.id === id) {
+          todo.complete = !todo.complete
+        }
+        return todo
+      })
+    )
+  }
+
+  // delete Todo
+  const deleteTodo = (id) => {
+    setTodo(todos.filter((todo) => todo.id !== id))
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <h1>Hello World</h1>
+
+      <TodoInput addTodo={addTodo} />
+
+      <TodoList todos={todos} checkTodo={checkTodo} deleteTodo={deleteTodo} />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
